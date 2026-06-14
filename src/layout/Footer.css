@@ -1,0 +1,39 @@
+.app-footer {
+  width: 100%;
+  flex-shrink: 0;
+  background: linear-gradient(to right, #2c0d77, #5a33c7);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 80px;
+  color: white;
+}
+
+.footer-title {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.footer p {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  opacity: 0.8;
+}

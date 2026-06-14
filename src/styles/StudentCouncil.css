@@ -1,0 +1,28 @@
+.council-container { padding: 40px 10% 80px 10%; }
+.header-container { margin-bottom: 40px; }
+.title-flex-box { display: inline-flex; flex-direction: column; width: fit-content; }
+.title-h1 { font-size: 32px; font-weight: 1000; color: var(--primary); margin: 0; }
+.title-bar { height: 4px; background-color: var(--primary); margin: 10px 0; width: 100%; }
+.subtitle-p { color: var(--text-sub); font-size: 16px; margin-top: 16px; }
+
+.council-card { display: flex; gap: 40px; align-items: center; margin-bottom: 30px; padding: 40px; background: white; border-radius: var(--radius-lg); border: 1px solid #f3f4f6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+.logo-container { flex-shrink: 0; width: 180px; height: 180px; background: var(--primary); border-radius: var(--radius-md); display: flex; justify-content: center; align-items: center; padding: 25px; box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2); }
+.logo-img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+
+.badge-span { font-size: 11px; font-weight: 700; color: var(--primary); background-color: color-mix(in srgb, var(--primary), transparent 90%); padding: 6px 14px; border-radius: 50px; }
+.council-name-h2 { font-size: 28px; font-weight: 800; margin: 12px 0; color: var(--text-main); }
+.council-desc-p { color: var(--text-sub); font-size: 16px; line-height: 1.6; margin-bottom: 24px; }
+
+.insta-link { text-decoration: none; }
+.insta-btn { border-radius: 50px; padding: 12px 28px; border: none; background-color: var(--primary); color: white; font-weight: 600; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px color-mix(in srgb, var(--primary), transparent 70%); }
+.insta-btn:hover { background-color: var(--primary-deep); transform: translateY(-2px); }
+
+.calendar-box { padding: 20px 0; }
+.calendar-title-h3 { font-size: 20px; font-weight: 800; text-align: center; margin-bottom: 30px; }
+.calendar-control-box { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.nav-btn { background: none; border: 1px solid #e2e8f0; padding: 10px 20px; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
+.nav-btn:hover { background-color: #f3f4f6; }
+.calendar-img-wrapper { width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; }
+.calendar-img-tag { width: 100%; display: block; }
+
+@media (max-width: 768px) {.council-card { flex-direction: column; text-align: center; }}

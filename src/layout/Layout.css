@@ -1,0 +1,45 @@
+:root {
+  /* 테마 색상 일괄 적용 */
+  --primary: #5a33c7; /* 기존 색상 이거입니다 -> #5a33c7 */
+  /* 배경 색상 일괄 적용 */
+  --bg-main: #f8f7fa;
+
+
+  --primary-light: color-mix(in srgb, var(--primary), transparent 90%);
+  --primary-deep: color-mix(in srgb, var(--primary), black 10%);
+  --text-main: #111;
+  --text-sub: #64748b;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --navbar-height: 100px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+}
+
+.app-header {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: var(--navbar-height);
+  padding-bottom: 80px;
+  padding-left: var(--page-padding);
+  padding-right: var(--page-padding);
+  box-sizing: border-box;
+}
+
+.card-base {
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}

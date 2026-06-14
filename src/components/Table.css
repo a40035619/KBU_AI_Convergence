@@ -1,0 +1,59 @@
+.table-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 6px solid var(--primary);
+  border-radius: 4px;
+  padding: 40px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-main);
+  margin: 0 0 20px 0;
+}
+
+.major-table-description {
+  font-size: 17px;
+  color: var(--text-main);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.credit-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.credit-table th,
+.credit-table td {
+  border: 1px solid #e7e7e7;
+  padding: 16px;
+  text-align: center;
+}
+
+.credit-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.major-table-footer {
+  margin-top: 20px;
+  line-height: 1.8;
+  color: var(--text-sub);
+  font-size: 15px;
+}
+
+.footer-note-item {
+  margin: 0 0 6px 0;
+}
+
+.footer-note-item:last-child {
+  margin-bottom: 0;
+}
