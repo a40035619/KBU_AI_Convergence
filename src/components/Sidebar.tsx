@@ -8,12 +8,14 @@ import "./Sidebar.css";
 interface SidebarProps {
   headerTitle: string;
   menuData: SidebarSectionStructure[];
+  activeKey: string;
   onItemClick: (key: string) => void;
 }
 
 function Sidebar({
   headerTitle,
   menuData,
+  activeKey,
   onItemClick,
 }: SidebarProps) {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(
@@ -69,23 +71,26 @@ function Sidebar({
               }
             >
               <div
-                className={`sidebar-arrow ${
-                  isOpen ? "open" : "closed"
-                }`}
+                className={`sidebar-arrow ${isOpen ? "open" : "closed"
+                  }`}
               />
               {section.title}
             </div>
 
             {isOpen &&
-              section.items.map((item: SidebarSubItem) => (
-                <div
-                  className="sidebar-item"
-                  key={item.key}
-                  onClick={() => onItemClick(item.key)}
-                >
-                  {item.name}
-                </div>
-              ))}
+              section.items.map((item: SidebarSubItem) => {
+                const isActive = item.key === activeKey;
+
+                return (
+                  <div
+                    className={`sidebar-item ${isActive ? "active" : ""}`}
+                    key={item.key}
+                    onClick={() => onItemClick(item.key)}
+                  >
+                    {item.name}
+                  </div>
+                );
+              })}
           </div>
         );
       })}

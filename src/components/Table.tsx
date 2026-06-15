@@ -16,8 +16,6 @@ function Table({
   rows,
   footerNotes,
 }: TableProps) {
-  if (!headers || !rows) return null;
-
   return (
     <div className="table-container">
       {title && <h3 className="table-title">{title}</h3>}

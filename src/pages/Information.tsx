@@ -5,120 +5,126 @@ import Table from "../components/Table";
 import "../styles/information.css";
 import "../components/Sidebar.css";
 
-type PageType = | "software" | "ai" | "service" | "course" | "license";
+const {
+  sidebarHeader,
+  sidebarData,
+  category,
+  software,
+  ai,
+  service,
+  curriculum,
+  courseTablesMatrix,
+  licenseTablesMatrix,
+} = informationData as any;
+
+function CourseContent() {
+  return (
+    <div className="sub-content-wrapper">
+      <Table
+        title={curriculum.course.division.title}
+        headers={courseTablesMatrix.division.headers}
+        rows={courseTablesMatrix.division.rows}
+        footerNotes={curriculum.course.division.footerNotes}
+      />
+      <Table
+        title={curriculum.course.freshman2022.title}
+        headers={courseTablesMatrix.freshman2022.headers}
+        rows={courseTablesMatrix.freshman2022.rows}
+        footerNotes={curriculum.course.freshman2022.footerNotes}
+      />
+      <Table
+        title={curriculum.course.transfer2024.title}
+        headers={courseTablesMatrix.transfer2024.headers}
+        rows={courseTablesMatrix.transfer2024.rows}
+      />
+    </div>
+  );
+}
+
+function LicenseContent() {
+  return (
+    <div className="sub-content-wrapper">
+      <Table
+        title={curriculum.license.international.title}
+        description={curriculum.license.international.description}
+        headers={licenseTablesMatrix.international.headers}
+        rows={licenseTablesMatrix.international.rows}
+      />
+      <Table
+        title={curriculum.license.national.title}
+        headers={licenseTablesMatrix.national.headers}
+        rows={licenseTablesMatrix.national.rows}
+        footerNotes={curriculum.license.national.footerNotes}
+      />
+    </div>
+  );
+}
 
 function Information() {
-  const [page, setPage] = useState<PageType>("software");//페이지 변환 함수
+  const [page, setPage] = useState("software");
 
-  //구조 분해 할당 사용
-  const {
-    sidebarHeader,
-    sidebarData,
-    category,
-    software,
-    ai,
-    service,
-    curriculum,
-    courseTablesMatrix,
-    licenseTablesMatrix,
-  } = informationData as any;
-
-  //페이지 별 제목 저장
-  const TITLE_MAP: Record<PageType, string> = {
-    software: software.title,
-    ai: ai.title,
-    service: service.title,
-    course: curriculum.course.title,
-    license: curriculum.license.title,
+  const PAGE_MAP: Record<string, { mainTitle: string; subTitle: string; description: string | null; content: React.ReactNode }> = {
+    software: {
+      mainTitle: category,
+      subTitle: software.title,
+      description: software.description,
+      content: null,
+    },
+    ai: {
+      mainTitle: category,
+      subTitle: ai.title,
+      description: ai.description,
+      content: null,
+    },
+    service: {
+      mainTitle: category,
+      subTitle: service.title,
+      description: service.description,
+      content: null,
+    },
+    course: {
+      mainTitle: curriculum.category,
+      subTitle: curriculum.course.title,
+      description: null,
+      content: <CourseContent />,
+    },
+    license: {
+      mainTitle: curriculum.category,
+      subTitle: curriculum.license.title,
+      description: null,
+      content: <LicenseContent />,
+    },
   };
 
-  //설명 박스
-  const description =
-    page === "software"
-      ? software.description
-      : page === "ai"
-        ? ai.description
-        : page === "service"
-          ? service.description
-          : null; //교과좌정이나 라이센스는 표를 보여주기 때문에 반환
-
-  const handlePageChange = (key: string) => {
-    setPage(key as PageType);
-  };
-  //사이드 바 메뉴 클릭시 페이지 전환 함수
-
-  const courseText = curriculum.course;
-  const licenseText = curriculum.license;
+  const currentPageData = PAGE_MAP[page] || PAGE_MAP["software"];
 
   return (
     <div className="information-page">
       <div className="information-content-wrapper">
         <Sidebar
           headerTitle={sidebarHeader}
-          menuData={sidebarData as any}
-          onItemClick={handlePageChange}
+          menuData={sidebarData}
+          activeKey={page}
+          onItemClick={setPage}
         />
 
         <div className="major-content">
           <div className="major-header">
             <h1 className="major-title-main">
-              {page === "course" || page === "license"
-                ? curriculum.category
-                : category}
+              {currentPageData.mainTitle}
             </h1>
-
             <p className="major-title-sub">
-              {TITLE_MAP[page]}
+              {currentPageData.subTitle}
             </p>
           </div>
 
-          {description && (
+          {currentPageData.description && (
             <div className="major-description-box">
-              {description}
+              {currentPageData.description}
             </div>
           )}
 
-          {page === "course" && (
-            <div>
-              <Table
-                title={courseText.division.title}
-                headers={courseTablesMatrix.division.headers}
-                rows={courseTablesMatrix.division.rows}
-                footerNotes={courseText.division.footerNotes}
-              />
-
-              <Table
-                title={courseText.freshman2022.title}
-                headers={courseTablesMatrix.freshman2022.headers}
-                rows={courseTablesMatrix.freshman2022.rows}
-                footerNotes={courseText.freshman2022.footerNotes}
-              />
-
-              <Table
-                title={courseText.transfer2024.title}
-                headers={courseTablesMatrix.transfer2024.headers}
-                rows={courseTablesMatrix.transfer2024.rows}
-              />
-            </div>
-          )}
-
-          {page === "license" && (
-            <div>
-              <Table
-                title={licenseText.international.title}
-                description={licenseText.international.description}
-                headers={licenseTablesMatrix.international.headers}
-                rows={licenseTablesMatrix.international.rows}
-              />
-
-              <Table
-                title={licenseText.national.title}
-                headers={licenseTablesMatrix.national.headers}
-                rows={licenseTablesMatrix.national.rows}
-                footerNotes={licenseText.national.footerNotes}
-              />
-            </div>
-          )}
+          {currentPageData.content}
         </div>
       </div>
     </div>
